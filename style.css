@@ -1,0 +1,190 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #0b0b14;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  touch-action: manipulation;
+  padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom);
+}
+
+.container {
+  width: 100%;
+  max-width: 440px;
+  padding: 16px;
+  text-align: center;
+}
+
+/* ===== RGB টেক্সট ===== */
+.rgb-text {
+  background: linear-gradient(90deg, #f00, #ff0, #0f0, #0ff, #00f, #f0f, #f00);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: rgbMove 4s linear infinite;
+  font-size: 28px;
+  margin-bottom: 12px;
+}
+
+@keyframes rgbMove {
+  to { background-position: 300% 0; }
+}
+
+/* ===== স্কোরবোর্ড ===== */
+.scoreboard {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.score {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 8px 4px;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.score span {
+  margin-left: 6px;
+  font-size: 20px;
+}
+
+.x-score { color: #ff3b5c; }
+.o-score { color: #00e5ff; }
+.d-score { color: #ccc; }
+
+#status {
+  font-size: 18px;
+  min-height: 26px;
+  margin-bottom: 14px;
+}
+
+/* ===== RGB বর্ডার ও গ্লো ===== */
+.board-wrap {
+  position: relative;
+  padding: 4px;
+  border-radius: 18px;
+  margin: 0 auto 18px;
+  width: 100%;
+  background: linear-gradient(90deg, #f00, #ff0, #0f0, #0ff, #00f, #f0f, #f00);
+  background-size: 300% 100%;
+  animation: rgbMove 4s linear infinite;
+}
+
+.board-wrap::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 20px;
+  background: inherit;
+  background-size: 300% 100%;
+  animation: rgbMove 4s linear infinite;
+  filter: blur(12px);
+  z-index: 0;
+}
+
+.board {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  padding: 6px;
+  background: #0b0b14;
+  border-radius: 14px;
+}
+
+/* ===== ঘর ===== */
+.cell {
+  aspect-ratio: 1 / 1;
+  border: none;
+  border-radius: 10px;
+  background: #171727;
+  font-size: clamp(30px, 11vw, 48px);
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.cell:active:not(.taken) {
+  transform: scale(0.92);
+  background: #26263d;
+}
+
+.cell.x {
+  color: #ff3b5c;
+  text-shadow: 0 0 8px #ff3b5c, 0 0 18px #ff3b5c;
+}
+
+.cell.o {
+  color: #00e5ff;
+  text-shadow: 0 0 8px #00e5ff, 0 0 18px #00e5ff;
+}
+
+.cell.taken {
+  cursor: not-allowed;
+}
+
+/* বিজয়ী ঘরে RGB রঙ বদলাবে */
+.cell.win {
+  color: #fff;
+  text-shadow: none;
+  animation: winRgb 1s linear infinite;
+}
+
+@keyframes winRgb {
+  0%   { background: hsl(0, 100%, 50%); }
+  25%  { background: hsl(90, 100%, 50%); }
+  50%  { background: hsl(180, 100%, 50%); }
+  75%  { background: hsl(270, 100%, 50%); }
+  100% { background: hsl(360, 100%, 50%); }
+}
+
+/* ===== বাটন ===== */
+.buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+button#restart,
+button#resetScore {
+  padding: 12px 22px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 25px;
+  background: #fff;
+  color: #0b0b14;
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+
+button#resetScore.secondary {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+
+button#restart:active,
+button#resetScore:active {
+  transform: scale(0.95);
+}
