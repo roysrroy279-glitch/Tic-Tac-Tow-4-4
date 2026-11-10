@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#0b0b14">
+  <meta name="mobile-web-app-capable" content="yes">
+  <title>4x4 Tic Tac Toe</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <main class="container">
+    <h1 class="rgb-text">4×4 Tic Tac Toe</h1>
+
+    <div class="scoreboard">
+      <div class="score x-score">X <span id="scoreX">0</span></div>
+      <div class="score d-score">ড্র <span id="scoreD">0</span></div>
+      <div class="score o-score">O <span id="scoreO">0</span></div>
+    </div>
+
+    <p id="status">Player X এর পালা</p>
+
+    <div class="board-wrap">
+      <div id="board" class="board"></div>
+    </div>
+
+    <div class="buttons">
+      <button id="restart">নতুন গেম</button>
+      <button id="resetScore" class="secondary">স্কোর রিসেট</button>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
